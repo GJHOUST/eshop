@@ -2,9 +2,9 @@ spring:
   application:
     name: eshop
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: postgresql://postgres:wHjtAGBPdSyKkLhjfxiXdBJaQFwmxpum@postgres.railway.internal:5432/railway
+    username: postgres
+    password: wHjtAGBPdSyKkLhjfxiXdBJaQFwmxpum
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -12,5 +12,5 @@ spring:
     open-in-view: false
 
 jwt:
-  secret: ${JWT_SECRET}
+  secret: qL9mK2pX7vN5wR3sT8yU1aB4cD6eF0gH9jI2kL5mN8oP1qR4sT7uV0wX3yZ6aB9cD
   expiration: 900000
