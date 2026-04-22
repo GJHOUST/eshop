@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: eshop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eshop
+    username: postgres
+    password: M@jjstr321
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+jwt:
+  secret: qL9mK2pX7vN5wR3sT8yU1aB4cD6eF0gH9jI2kL5mN8oP1qR4sT7uV0wX3yZ6aB9cD
+  expiration: 900000
+
