@@ -1,14 +1,21 @@
 # E-shop REST API
 
-Backendová aplikace postavená na **Spring Boot (Java 21)**, která poskytuje REST API pro správu produktů.
+Backendová aplikace postavená na Spring Boot (Java 21), která poskytuje REST API pro správu produktů.
 
 Projekt slouží jako ukázka backendové architektury včetně JWT autentizace a napojení na databázi.
 
-## 🚀 Deployment
+⚠️ Poznámka: Pokud chcete využívat uživatelské (user) endpointy, je nutné si aplikaci naklonovat z GitHubu (nebo stáhnout) a spustit lokálně. Zároveň je potřeba ručně nastavit PostgreSQL databázi a spravovat uživatelské role přímo v databázi.
+
+Dostupné role:
+
+ADMIN
+USER.
+
+## Deployment
 
 API je nasazené a dostupné zde: **https://eshop-production-474b.up.railway.app**
 
-## 📋 Technologie
+## Technologie
 
 - **Spring Boot 3.4.2**
 - **Java 21**
@@ -17,7 +24,7 @@ API je nasazené a dostupné zde: **https://eshop-production-474b.up.railway.app
 - **PostgreSQL** databáze
 - **Maven** pro build management
 
-## 🔐 Autentizace
+## Autentizace
 
 API používá JWT (JSON Web Token) pro autentizaci. Všechny chráněné endpointy vyžadují platný JWT token v headeru `Authorization`.
 
@@ -26,7 +33,7 @@ API používá JWT (JSON Web Token) pro autentizaci. Všechny chráněné endpoi
 2. Přihlaste se na `/api/auth/login` a obdržíte JWT token
 3. Přidejte token do headeru při dalších requestech
 
-## 🧪 Testování v Postmanu
+## Testování v Postmanu
 
 API se testuje pomocí **Postmanu** zasíláním HTTP requestů.
 
@@ -34,13 +41,7 @@ API se testuje pomocí **Postmanu** zasíláním HTTP requestů.
 
 V Postmanu vytvořte nový request s následujícím nastavením:
 
-**Headers:**
-```
-Authorization: Bearer <váš_jwt_token>
-Content-Type: application/json
-```
-
-## 📡 API ENDPOINTS
+## API ENDPOINTS
 
 ### Authentication (`/api/auth`)
 
@@ -56,6 +57,7 @@ POST /api/auth/register
   "confirmPassword": "heslo123",
   "userName": "jmeno",
   "phone": "+420123456789",
+  "dateOfBirth": "2001-03-03"
   "address": "Ulice 123, Praha"
 }
 ```
@@ -79,9 +81,6 @@ POST /api/auth/login
   "role": "USER"
 }
 ```
-
----
-
 ### Products (`/api/products`)
 
 #### Create Product (ADMIN)
@@ -92,9 +91,7 @@ POST /api/products/create
 ```json
 {
   "name": "Laptop",
-  "description": "Výkonný laptop",
-  "price": 25000,
-  "stock": 10
+  "price": 25000
 }
 ```
 
@@ -116,9 +113,7 @@ PUT /api/products/{id}
 ```json
 {
   "name": "Laptop Updated",
-  "description": "Aktualizovaný popis",
-  "price": 26000,
-  "stock": 8
+  "price": 26000
 }
 ```
 
@@ -126,8 +121,6 @@ PUT /api/products/{id}
 ```
 DELETE /api/products/{id}
 ```
-
----
 
 ### Cart (`/api/cart`)
 
@@ -183,76 +176,3 @@ DELETE /api/cart/{cartId}/items/{itemId}
 #### Delete Cart
 ```
 DELETE /api/cart/{id}
-```
-
----
-
-### Users (`/api/users`) - ADMIN only
-
-#### Get User by ID
-```
-GET /api/users/{id}
-```
-
-#### Get All Users
-```
-GET /api/users?page=0&size=10
-```
-
-#### Update User
-```
-PUT /api/users/{id}
-```
-**Body:**
-```json
-{
-  "username": "nove_jmeno",
-  "email": "novy@example.com",
-  "phone": "+420987654321",
-  "address": "Nova ulice 456, Praha"
-}
-```
-
-#### Delete User
-```
-DELETE /api/users/{id}
-```
-
----
-
-## 🏃 Spuštění lokálně
-
-### Předpoklady
-- Java 21+
-- Maven
-- PostgreSQL
-
-### Instalace a spuštění
-
-```bash
-# Clone repository
-git clone https://github.com/GJHOUST/eshop.git
-cd eshop
-
-# Build projektu
-mvn clean install
-
-# Spuštění aplikace
-mvn spring-boot:run
-```
-
-Aplikace bude dostupná na `http://localhost:8080`
-
----
-
-## 📝 Poznámky
-
-- API je v **testovacím režimu** na produkční URL
-- Chráněné endpointy (`/api/users`, `/api/products`) vyžadují ADMIN roli
-- JWT token se posílá v headeru: `Authorization: Bearer <token>`
-
----
-
-## 📧 Kontakt
-
-Otázky? Otevřete issue na GitHubu.
