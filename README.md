@@ -8,7 +8,7 @@ Projekt slouží jako ukázka backendové architektury včetně JWT autentizace 
 
 Dostupné role:
 
-ADMIN
+ADMIN,
 USER.
 
 ## Deployment
